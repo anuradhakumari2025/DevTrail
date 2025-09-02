@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+html,
+#root {
+  width: 100%;
+  /* height: 100%; */
+}
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+/* :root {
+  --primary-color: #24292f;
+  --secondary-color: #ffffff;
+  --bg-gradient: linear-gradient(135deg, #1f1c2c, #928dab);
+  --card-bg: #ffffff;
+  --text-dark: #333;
+  --border-radius: 12px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+} */
+
+/* :root {
+  --color-bg: #f9fafb;     /* keep light bg for contrast 
+  --color-primary: #3B0B64; 
+  --color-secondary: #6E0D4D;
+  --color-accent: #FF642C; 
+  --color-danger: #C20608;
+  --color-highlight: #F72916;
+  --color-text: #111827;
+} */
+:root {
+  --bg-gradient: linear-gradient(to bottom, #27117d, #0a032d);
+  --primary: #0a032d;
+  --secondary: #6638fd;
+  --tertiary:#27117d;
+  --accent: #c20608;
+  --highlight: #8865fc;
+  --warning: #ff642c;
+  --green:#059862;
+  --light-green:#E8FDF2;
+  --bg: #f9f9f9;
+}
+
+body {
+  background: var(--bg);
+}

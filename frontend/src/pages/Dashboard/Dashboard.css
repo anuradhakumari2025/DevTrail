@@ -1,0 +1,83 @@
+.dashboard {
+  margin-left: 19%;
+  margin-top: 6rem;
+  box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.26);
+  background:var(--bg);
+  width: 80%;
+  border-radius: 1.5rem;
+  height: calc(100vh - 7rem);
+}
+
+.content {
+  flex: 1;
+  padding: 1rem 1.4rem;
+}
+
+.welcome h2 {
+  margin: 0 0 4px 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.26);
+}
+
+.card h3 {
+  margin-bottom: 6px;
+  color: rgb(114, 114, 114);
+  font-weight: 500;
+}
+
+.number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-highlight);
+  margin-bottom: 0.4rem;
+}
+
+.trend {
+  font-size: 0.9rem;
+  color: var(--green);
+  background:var(--light-green);
+  padding: 0.1rem 0.4rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.trend.positive {
+  color: var(--color-accent); /* orange for growth */
+}
+.trend.negative {
+  color: var(--color-danger); /* deep red for loss */
+}
+/* Responsive */
+@media (max-width: 920px) {
+  .menu-btn {
+    display: block;
+  }
+  .sidebar {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    height: 100%;
+    z-index: 10;
+  }
+  .sidebar.open {
+    display: block;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-actions .btn {
+    display: none;
+  }
+}

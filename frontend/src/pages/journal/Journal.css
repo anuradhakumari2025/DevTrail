@@ -1,0 +1,258 @@
+.journal-container {
+  display: flex;
+  margin-left: 19%;
+  margin-top: 6rem;
+  width: 80%;
+  border-radius: 1.5rem;
+  height: calc(100vh - 7rem);
+}
+
+.journal-main {
+  width: 100%;
+  background: var(--bg);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.2rem;
+}
+.filter{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.filter h2{
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.filter-header select {
+  background: var(--tertiary);
+  color: white;
+  padding: 9px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.filter {
+  margin-right: 1rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+
+.add-entry-btn {
+  background: var(--green);
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  color: var(--bg);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.add-entry-btn:hover {
+  background-color: #3b8f70;
+}
+
+.entries {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  overflow-y: auto;
+  background: var(--bg);
+  -webkit-box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 20px 10px -20px rgba(0, 0, 0, 0.8);
+  padding-top: 1.5rem;
+  padding-right: 0.5rem;
+}
+
+.entries::-webkit-scrollbar {
+  width: 3px;
+}
+
+.entries::-webkit-scrollbar-thumb {
+  background: rgb(151, 166, 218);
+  border-radius: 5px;
+}
+
+.entry-card {
+  background: var(--tertiary);
+  border-radius: 20px;
+  padding: 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.entry-card .mainField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.catVis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.catVis .tagsContent {
+  margin: 0;
+  width: fit-content;
+}
+
+.catVis div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.entry-card h3 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  color: var(--light-green);
+}
+
+.entry-card .tags {
+  margin: 0;
+  color: var(--bg);
+  font-weight: 500;
+  font-size: 1rem;
+}
+.tagsContent {
+  background: var(--highlight);
+  color: var(--bg);
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.tagsContent .tag {
+  display: inline-block;
+  /* margin: 0 0.3rem; */
+}
+.entry-card small {
+  font-size: 0.9em;
+  margin-bottom: 14px;
+  color: var(--light-green);
+}
+
+.entry-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.entry-actions button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+.no-entry {
+  text-align: center;
+  color: var(--warning);
+  font-weight: 600;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 3, 45, 0.88);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.modal-content {
+  background: var(--primary);
+  padding: 30px 32px;
+  border-radius: 20px;
+  width: 450px;
+  box-shadow: 0 6px 16px rgba(101, 21, 255, 0.6);
+}
+
+.modal-content h2 {
+  color: var(--highlight);
+  margin-top: 0;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.modal-content form input,
+.modal-content form textarea,
+.modal-content form select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.public-label {
+  color: var(--light-green);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-actions button {
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+  font-size: 1rem;
+}
+
+.cancel {
+  background: var(--accent);
+  color:var(--bg);
+}
+
+.cancel:hover {
+  background: #a10407;
+}
+
+.save {
+  background: var(--green);
+  color: var(--bg);
+}
+
+.save:hover {
+  background-color: #02754b;
+}
+

@@ -1,0 +1,78 @@
+# Step 1 — Lock the MVP & Blueprint (no coding)
+
+## 1) Write the MVP scope 
+
+* **Core features**
+
+  * GitHub login (OAuth)
+  * Create journal entries with **Markdown**
+  * Entry types: **Learning / Win / Roadblock**
+  * **Visibility toggle:** Private or Public
+  * **Public profile page** that lists only public entries
+  * Basic filters: by type and by tag
+* **Out of scope for MVP** (backlog): streaks, reminders, reactions/likes, comments, rich analytics, mobile app.
+
+## 2) User stories (copy as-is, adjust if needed)
+
+* *As a developer,* I can sign in with GitHub so I don’t manage passwords.
+* *As a user,* I can create an entry with title, type, markdown content, and tags.
+* *As a user,* I can mark an entry **private** or **public** and change it later.
+* *As a user,* I can view, edit, and delete my entries.
+* *As a visitor,* I can see **/username** and read that user’s **public** entries.
+* *As a user,* I can filter my entries by type/tag.
+
+## 3) Data model draft
+
+* **User**
+
+  * `id`, `username` (from GitHub), `githubId`, `name`, `avatarUrl`, `bio`, `createdAt`
+  * Optional: `handle` (custom URL), `links` (website, twitter), `theme`
+* **Entry**
+
+  * `id`, `userId`, `title`, `type` (`learning` | `win` | `roadblock`)
+  * `contentMarkdown`, *(optional)* `contentHtml` (for caching after render)
+  * `tags` (array of strings)
+  * `visibility` (`private` | `public`)
+  * `createdAt`, `updatedAt`
+  * Optional later: `slug` (for pretty public URLs), `views`
+* **No separate Tag collection** for MVP—store tags as strings and index later if needed.
+
+## 4) Public pages & routes (just the surface, not implementation)
+
+* **Auth**
+
+  * `GET /auth/github` → start OAuth
+  * `GET /auth/github/callback` → finish OAuth
+  * `POST /auth/logout`
+* **Private (requires auth)**
+
+  * `GET /api/entries` (mine, with filters)
+  * `POST /api/entries`
+  * `GET /api/entries/:id`
+  * `PATCH /api/entries/:id`
+  * `DELETE /api/entries/:id`
+* **Public**
+
+  * `GET /u/:username` → public profile & list of public entries
+  * `GET /e/:slug` or `/u/:username/:slug` → single public entry (nice-to-have for MVP)
+
+## 5) Visibility & privacy rules
+
+* Only **public** entries appear on `/u/:username`.
+* Private entries are only visible to the owner after login.
+* If visibility changes from public→private, the public page must stop showing it.
+
+## 6) Acceptance criteria for MVP
+
+* I can sign in via GitHub and see my dashboard.
+* I can create/edit/delete entries with markdown, type, tags, and visibility.
+* My **public** entries appear on `/u/:username`; private ones do **not**.
+* I can filter my own entries by type/tag on the dashboard.
+
+## 7) Project logistics (quick setup decisions)
+
+* **Repo structure:** single repo with `/client` and `/server` or two repos—pick one. (Recommend single repo for MVP.)
+* **Naming:** “DevTrail” repo + short README with scope, stories, and acceptance criteria.
+* **Tracking:** create a simple Kanban (To Do / In Progress / Done) with the user stories above.
+
+---
