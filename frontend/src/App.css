@@ -47,3 +47,29 @@ html {
 body {
   background: var(--bg);
 }
+
+.layout{
+  height: 100vh;
+  /* padding:0 1rem ; */
+  display: flex;
+}
+.layoutChild{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 82%;
+  padding: 1rem 1.2rem;
+}
+@media (max-width: 600px) {
+  .layoutChild{
+    width: 100%;
+    /* padding: 1rem 0.5rem; */
+  }
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+  .layoutChild{
+    width: 78%;
+    padding: 1rem 1.5rem;
+    gap: 1.5rem;
+  }
+}

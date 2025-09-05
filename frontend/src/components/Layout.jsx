@@ -3,18 +3,24 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Sidebar from "./sidebar/Sidebar";
 import Navbar from "./navbar/Navbar";
 import Journal from "../pages/journal/Journal";
+import { useState } from "react";
 
-function Layout() {
+const Layout = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
   return (
-    <>
-      <Sidebar />
-      <Navbar/>
+    <div className="layout">
+      <Sidebar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+      <div className="layoutChild">
+        <Navbar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+
+        {/* Routes */}
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/journal" element={<Journal />} />
         </Routes>
-    </>
+      </div>
+    </div>
   );
-}
+};
 
-export default Layout
+export default Layout;

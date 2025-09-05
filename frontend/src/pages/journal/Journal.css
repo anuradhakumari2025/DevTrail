@@ -1,10 +1,8 @@
 .journal-container {
   display: flex;
-  margin-left: 19%;
-  margin-top: 6rem;
-  width: 80%;
+  width: 100%;
   border-radius: 1.5rem;
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 6rem);
 }
 
 .journal-main {
@@ -254,5 +252,46 @@
 
 .save:hover {
   background-color: #02754b;
+}
+
+@media (min-width:601px) and (max-width:1024px){
+  .entries {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+ padding-top: 2rem;
+  }
+  .journal-main{
+    padding: 1.5rem 1.2rem;
+  }
+}
+
+@media (max-width:600px){
+  .entries{
+    grid-template-columns: repeat(1,1fr);
+    padding-top: 1rem;
+  }
+  .header{
+    align-items: flex-start;
+    padding-bottom: 0;
+  }
+  .journal-main{
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+  .filter{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .catVis{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .catVis div{
+    flex-direction: row;
+    align-items: center;
+  }
 }
 

@@ -1,11 +1,9 @@
 .dashboard {
-  margin-left: 19%;
-  margin-top: 6rem;
   box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.26);
   background:var(--bg);
-  width: 80%;
+  width: 100%;
   border-radius: 1.5rem;
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 6rem);
 }
 
 .content {
@@ -52,31 +50,17 @@
   border-radius: 8px;
   font-weight: 500;
 }
-.trend.positive {
-  color: var(--color-accent); /* orange for growth */
-}
-.trend.negative {
-  color: var(--color-danger); /* deep red for loss */
-}
-/* Responsive */
-@media (max-width: 920px) {
-  .menu-btn {
-    display: block;
-  }
-  .sidebar {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    height: 100%;
-    z-index: 10;
-  }
-  .sidebar.open {
-    display: block;
-  }
+
+/*Ipad Responsive */
+@media (min-width: 601px) and (max-width: 1024px) {
+
 }
 
-@media (max-width: 720px) {
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .sidebar{
+    display: none;
+  }
   .nav-actions .btn {
     display: none;
   }

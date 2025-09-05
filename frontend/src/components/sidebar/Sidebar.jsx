@@ -1,32 +1,41 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const Sidebar = ({ mobileOpen, setMobileOpen }) => {
   return (
     <>
-      {/* Mobile toggle button */}
-      <div className="sidebar-toggle" onClick={() => setIsOpen(!isOpen)}>
-        <i className="ri-menu-2-line"></i>
-      </div>
-
-      <aside className={`sidebar ${isOpen ? "open" : ""}`}>
-        <h2 className="logo">DevTrail</h2>
+      <aside className={`sidebar ${mobileOpen ? "open" : ""}`}>
+        <div className="sidebarHeader">
+          <h2 className="logo">DevTrail</h2>
+          <span onClick={() => setMobileOpen(!mobileOpen)}>
+            <i className="ri-close-large-line"></i>
+          </span>
+        </div>
         <nav>
-          <NavLink to="/" className="nav-link">
+          <NavLink
+            to="/"
+            className="nav-link"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
             <div>
               <i className="ri-dashboard-horizontal-line"></i>
               <p>Dashboard</p>
             </div>
           </NavLink>
-          <NavLink to="/journal" className="nav-link">
+          <NavLink
+            to="/journal"
+            className="nav-link"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
             <div>
               <i className="ri-book-open-line"></i> <p> Journal</p>
             </div>
           </NavLink>
-          <NavLink to="/settings" className="nav-link">
+          <NavLink
+            to="/settings"
+            className="nav-link"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
             <div>
               <i className="ri-settings-4-line"></i>
               <p>Settings</p>
