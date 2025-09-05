@@ -1,11 +1,5 @@
 export const categories = [
   "Personal",
-  "Frontend",
-  "Backend",
-  "Database",
-  "DevOps",
-  "AI",
-  "ML",
   "Learning",
   "Project",
   "Bug",

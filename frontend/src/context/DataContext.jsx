@@ -11,18 +11,45 @@ export const DataProvider = ({ children }) => {
   const [selectedParentTag, setSelectedParentTag] = useState("");
   const [selectedChildTag, setSelectedChildTag] = useState("");
 
+  const [tags,setTags] = useState([])
+
+  const [formData, setFormData] = useState({
+    title: "",
+    date: "",
+    category: "",
+    content: "",
+    visibility: "",
+    tags: [],
+  });
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const backendUrl = "http://localhost:5000/api";
 
+ const parentTags = tags.filter((tag) => tag.parent === null);
+  const childTags = tags.filter(
+    (tag) => tag.parent && tag.parent._id === selectedParentTag
+  );
+
   const fetchJournals = async () => {
     try {
       const res = await axios.get(`${backendUrl}/journals/get`);
+      // console.log(res.data.journals);
       setEntries(res.data.journals);
     } catch (error) {
       console.log("Error fetching journals:", error);
     }
   };
+
+  const fetchTags = async () => {
+    try {
+      const res = await axios.get(`${backendUrl}/tags/get`);
+      // console.log(res.data.tags);
+      setTags(res.data.tags);
+    } catch (error) {
+      console.log("Error fetching tags:", error);
+    }
+  }
 
   const data = {
     backendUrl,
@@ -37,6 +64,12 @@ export const DataProvider = ({ children }) => {
     setSelectedChildTag,
     selectedParentTag,
     setSelectedParentTag,
+    formData,
+    setFormData,
+    tags,
+    setTags,
+    parentTags,
+    childTags
   };
 
   const fetchUser = async () => {
@@ -56,6 +89,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     fetchUser();
     fetchJournals();
+    fetchTags();
   }, []);
 
   return <DataContext.Provider value={data}>{children}</DataContext.Provider>;

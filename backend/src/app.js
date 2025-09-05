@@ -6,6 +6,8 @@ const passport = require("passport");
 const session = require("express-session");
 const app = express();
 const journalRoutes = require("./routes/journal.route")
+const tagRoutes = require("./routes/tag.route")
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -26,6 +28,7 @@ app.use(passport.session());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/journals",journalRoutes)
+app.use("/api/tags",tagRoutes)
 
 app.get("/api/test", (req, res) => {
   res.send("Backend working");

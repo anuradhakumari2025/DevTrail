@@ -15,7 +15,7 @@ const Sidebar = () => {
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
         <h2 className="logo">DevTrail</h2>
         <nav>
-          <NavLink to="/dashboard" className="nav-link">
+          <NavLink to="/" className="nav-link">
             <div>
               <i className="ri-dashboard-horizontal-line"></i>
               <p>Dashboard</p>

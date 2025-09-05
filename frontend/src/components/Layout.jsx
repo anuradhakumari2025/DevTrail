@@ -10,7 +10,7 @@ function Layout() {
       <Sidebar />
       <Navbar/>
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/journal" element={<Journal />} />
         </Routes>
     </>
