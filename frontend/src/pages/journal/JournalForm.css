@@ -1,0 +1,72 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 3, 45, 0.88);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.modal-content {
+  background: var(--primary);
+  padding: 30px 32px;
+  border-radius: 20px;
+  width: 450px;
+  box-shadow: 0 6px 16px rgba(101, 21, 255, 0.6);
+}
+
+.modal-content h2 {
+  color: var(--highlight);
+  margin-top: 0;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.modal-content form input,
+.modal-content form textarea,
+.modal-content form select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-actions button {
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+  font-size: 1rem;
+}
+.cancel {
+  background: var(--accent);
+  color:var(--bg);
+}
+
+.cancel:hover {
+  background: #a10407;
+}
+
+.save {
+  background: var(--green);
+  color: var(--bg);
+}
+
+.save:hover {
+  background-color: #02754b;
+}

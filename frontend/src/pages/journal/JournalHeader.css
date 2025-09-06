@@ -1,0 +1,84 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.2rem;
+}
+
+.filter-header select {
+  background: var(--tertiary);
+  color: white;
+  padding: 9px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.filter {
+  margin-right: 1rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.addView {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.view {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  background-color: var(--tertiary);
+  color: var(--bg);
+  width: 7rem;
+  border-radius: 8px;
+}
+.view p {
+  font-weight: 600;
+}
+.view i {
+  margin-top: 0.2rem;
+}
+
+.viewOptions {
+  position: absolute;
+  top: 98%;
+  left: 0%;
+  width: 100%;
+  padding: 0rem;
+  border-radius: 8px;
+
+  background-color: var(--tertiary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.viewOptions p {
+  padding: 0.4rem 0.6rem;
+  color: white;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.viewOptions p:hover {
+  background-color: var(--secondary);
+  color: var(--bg);
+}

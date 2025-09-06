@@ -1,0 +1,25 @@
+.timelineCard{
+  background-color: var(--tertiary) !important;
+}
+
+.timelineSubtitle{
+  color: white !important;
+  font-size: 1.2rem !important;
+  font-weight: 400 !important;
+}
+
+.my-card-title{
+  font-size: 1.5rem !important;
+}
+.my-card-text{
+  padding:0.3rem 1rem;
+  background-color: var(--highlight);
+  color: white !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+}
+.my-timeline-title{
+  /* background-color: red; */
+  font-size: 1.2rem !important;
+  color: var(--highlight) !important;
+}

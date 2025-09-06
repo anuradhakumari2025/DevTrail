@@ -1,23 +1,26 @@
 import axios from "axios";
 import { useData } from "../../context/DataContext";
 import { categories } from "./JournalData";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import "./JournalForm.css"
 
 const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
   const {
     entries,
     setEntries,
-    selectedChildTag,
-    setSelectedChildTag,
-    selectedParentTag,
-    setSelectedParentTag,
     formData,
     setFormData,
-    parentTags,
-    childTags,
     backendUrl,
+    tags
   } = useData();
 
+   const [selectedParentTag, setSelectedParentTag] = useState("");
+    const [selectedChildTag, setSelectedChildTag] = useState("");
+
+     const parentTags = tags.filter((tag) => tag.parent === null);
+     const childTags = tags.filter(
+       (tag) => tag.parent && tag.parent._id === selectedParentTag
+     );
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -31,13 +34,13 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
     const tagsToSend = [];
     if (selectedParentTag) tagsToSend.push(selectedParentTag);
     if (selectedChildTag) tagsToSend.push(selectedChildTag);
-    console.log("Selected Tags:", tagsToSend);
+    // console.log("Selected Tags:", tagsToSend);
     // Update formData before send
     const dataToSubmit = {
       ...formData,
       tags: tagsToSend,
     };
-    console.log("Form Data Submitted:", dataToSubmit);
+    // console.log("Form Data Submitted:", dataToSubmit);
 
     try {
       if (editIndex) {
@@ -58,14 +61,14 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
               setSelectedChildTag("");
             }
           }
-          console.log("Server Response:", res.data);
+          // console.log("Server Response:", res.data);
         }
       } else {
         const res = await axios.post(
           `${backendUrl}/journals/create`,
           dataToSubmit
         );
-        console.log("Server Response:", res.data);
+        // console.log("Server Response:", res.data);
         if (res.data.journal) {
           setEntries((prev) => [res.data.journal, ...prev]);
         }
@@ -89,6 +92,7 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
     setEditIndex(null);
     setShowForm(false);
   };
+
   useEffect(() => {
     if (editIndex) {
       const entryToEdit = entries.find((e) => e._id === editIndex);
@@ -98,7 +102,7 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
           date: entryToEdit.date ? entryToEdit.date.slice(0, 10) : "",
         });
 
-        // 🟢 Set tag dropdown values also
+        //  Set tag dropdown values also
         if (entryToEdit.tags && entryToEdit.tags.length > 0) {
           // Assuming first is parent and second is child
           setSelectedParentTag(entryToEdit.tags[0]._id || "");
@@ -115,6 +119,7 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
     setSelectedChildTag,
     setSelectedParentTag,
   ]);
+  
   return (
     <div className="modal">
       <div className="modal-content">

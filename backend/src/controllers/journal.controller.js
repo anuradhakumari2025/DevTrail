@@ -141,10 +141,13 @@ module.exports.createJournal = async (req, res) => {
       tags,
     });
 
-    const populatedJournal = await Journal.findById(newJournal._id).populate("tags");
-    return res
-      .status(201)
-      .json({ message: "Journal created successfully", journal: populatedJournal });
+    const populatedJournal = await Journal.findById(newJournal._id).populate(
+      "tags"
+    );
+    return res.status(201).json({
+      message: "Journal created successfully",
+      journal: populatedJournal,
+    });
   } catch (error) {
     console.log("Error in createJournal:", error);
     return res.status(400).json({ message: "Server error", error });
@@ -164,7 +167,26 @@ module.exports.deleteJournal = async (req, res) => {
 
 module.exports.getJournals = async (req, res) => {
   try {
-    const journals = await Journal.find().sort({ createdAt: -1 }).populate("tags");
+    const { category, parentTag, childTag, search } = req.query;
+    let filter = {};
+    if (category && category !== "All") {
+      filter.category = category;
+    }
+
+    // Add tag filters only if specified
+    if (parentTag && childTag) {
+      filter.tags = { $all: [parentTag, childTag] }; // Both tags selected
+    } else if (parentTag) {
+      filter.tags = parentTag; // Only parent tag selected
+    }
+
+    // Add title search only if provided
+    if (search) {
+      filter.title = { $regex: search, $options: "i" };
+    }
+    const journals = await Journal.find(filter)
+      .populate("tags")
+      .sort({ createdAt: -1 });
     return res.status(200).json({ journals });
   } catch (error) {
     console.log("Error in getJournals:", error);
@@ -173,12 +195,14 @@ module.exports.getJournals = async (req, res) => {
 };
 
 module.exports.updateJounal = async (req, res) => {
-try {
-  const {id} = req.params;
-  const updated = await Journal.findByIdAndUpdate(id, req.body, { new: true }).populate("tags");
-  return res.status(200).json({ journal: updated });
-} catch (error) {
-  console.log("Error in updateJournal:", error);
-  return res.status(400).json({ message: "Server error", error });
-}
-}
+  try {
+    const { id } = req.params;
+    const updated = await Journal.findByIdAndUpdate(id, req.body, {
+      new: true,
+    }).populate("tags");
+    return res.status(200).json({ journal: updated });
+  } catch (error) {
+    console.log("Error in updateJournal:", error);
+    return res.status(400).json({ message: "Server error", error });
+  }
+};

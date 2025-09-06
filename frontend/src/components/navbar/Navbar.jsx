@@ -1,13 +1,39 @@
+import { useEffect, useState } from "react";
 import { useData } from "../../context/DataContext";
+import { useLocation } from "react-router";
 import "./Navbar.css";
+import axios from "axios";
 
 const Navbar = ({ mobileOpen, setMobileOpen }) => {
-  const { user } = useData();
-  // console.log(user)
+  const { user, backendUrl, setEntries } = useData();
+  const [search, setSearch] = useState("");
+  
+  const location = useLocation();
+  let title = "Dashboard";
+  if (location.pathname.includes("journal")) title = "Journal";
+  if (location.pathname.includes("settings")) title = "Settings";
+
+  const params = new URLSearchParams();
+  if (search) params.append("search", search);
+  const fetchJournals = async () => {
+    try {
+      const res = await axios.get(
+        `${backendUrl}/journals/get?${params.toString()}`
+      );
+      setEntries(res.data.journals);
+    } catch (err) {
+      // handle error
+      console.error("Error fetching journals:", err);
+    }
+  };
+  useEffect(() => {
+    fetchJournals();
+    // eslint-disable-next-line
+  }, [search]);
   return (
     <div className="navbar">
       {/* Left - Title */}
-      <h2 className="navbar-title">Dashboard</h2>
+      <h2 className="navbar-title">{title}</h2>
 
       <div className="navMenu" onClick={() => setMobileOpen(!mobileOpen)}>
         <i className="ri-menu-2-line"></i>
@@ -17,7 +43,12 @@ const Navbar = ({ mobileOpen, setMobileOpen }) => {
         {/* Middle - Search */}
         <div className="navbar-search">
           <i className="ri-search-line search-icon"></i>
-          <input type="text" placeholder="Search here..." />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search here..."
+          />
         </div>
 
         {/* Right - Icons + Profile */}

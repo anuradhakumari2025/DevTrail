@@ -8,9 +8,6 @@ export const DataProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const [entries, setEntries] = useState([]);
-  const [selectedParentTag, setSelectedParentTag] = useState("");
-  const [selectedChildTag, setSelectedChildTag] = useState("");
-
   const [tags,setTags] = useState([])
 
   const [formData, setFormData] = useState({
@@ -25,11 +22,6 @@ export const DataProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const backendUrl = "http://localhost:5000/api";
-
- const parentTags = tags.filter((tag) => tag.parent === null);
-  const childTags = tags.filter(
-    (tag) => tag.parent && tag.parent._id === selectedParentTag
-  );
 
   const fetchJournals = async () => {
     try {
@@ -60,16 +52,10 @@ export const DataProvider = ({ children }) => {
     setLoading,
     entries,
     setEntries,
-    selectedChildTag,
-    setSelectedChildTag,
-    selectedParentTag,
-    setSelectedParentTag,
     formData,
     setFormData,
     tags,
     setTags,
-    parentTags,
-    childTags
   };
 
   const fetchUser = async () => {
