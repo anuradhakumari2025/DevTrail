@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useData } from "../../context/DataContext";
 import { categories } from "./JournalData";
 import "./JournalHeader.css";
-import axios from "axios";
+import {
+  fetchJournals,
+  getFilteredTagsAndParams,
+} from "../../utils/FilterFunction";
 
 const JournalHeader = ({ setShowForm, setViewValue }) => {
   const { tags, setEntries, backendUrl } = useData();
@@ -11,31 +14,24 @@ const JournalHeader = ({ setShowForm, setViewValue }) => {
   const [filterChildTag, setFilterChildTag] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
 
-  const parentTags = tags.filter((tag) => tag.parent === null);
-  const childTags = tags.filter(
-    (tag) => tag.parent && tag.parent._id === filterParentTag
+  const { parentTags, childTags } = getFilteredTagsAndParams(
+    tags,
+    filterParentTag,
+    filterChildTag,
+    filterCategory
   );
 
-  const params = new URLSearchParams();
-  if (filterCategory && filterCategory !== "All")
-    params.append("category", filterCategory);
-  if (filterParentTag && filterParentTag !== "ALL") params.append("parentTag", filterParentTag);
-  if (filterChildTag && filterChildTag !== "ALL") params.append("childTag", filterChildTag);
-
-  const fetchJournals = async () => {
-    try {
-      const res = await axios.get(
-        `${backendUrl}/journals/get?${params.toString()}`
-      );
-      setEntries(res.data.journals);
-    } catch (err) {
-      // handle error
-      console.error("Error fetching journals:", err);
-    }
-  };
-
   useEffect(() => {
-    fetchJournals();
+    const { params } = getFilteredTagsAndParams(
+      tags,
+      filterParentTag,
+      filterChildTag,
+      filterCategory
+    );
+    fetchJournals(
+      `${backendUrl}/journals/get?${params.toString()}`,
+      setEntries
+    );
     // eslint-disable-next-line
   }, [filterCategory, filterParentTag, filterChildTag]);
 

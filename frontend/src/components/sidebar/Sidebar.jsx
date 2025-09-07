@@ -13,7 +13,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
         </div>
         <nav>
           <NavLink
-            to="/"
+            to="/dashboard"
             className="nav-link"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
@@ -39,6 +39,16 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
             <div>
               <i className="ri-settings-4-line"></i>
               <p>Settings</p>
+            </div>
+          </NavLink>
+          <NavLink
+            to="/community"
+            className="nav-link"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            <div>
+              <i className="ri-group-line"></i>
+              <p>Community</p>
             </div>
           </NavLink>
         </nav>

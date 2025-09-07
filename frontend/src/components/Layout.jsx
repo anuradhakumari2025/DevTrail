@@ -4,6 +4,7 @@ import Sidebar from "./sidebar/Sidebar";
 import Navbar from "./navbar/Navbar";
 import Journal from "../pages/journal/Journal";
 import { useState } from "react";
+import Community from "../pages/community/Community";
 
 const Layout = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -15,8 +16,9 @@ const Layout = () => {
 
         {/* Routes */}
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/journal" element={<Journal />} />
+          <Route path="/community" element={<Community/>}/>
         </Routes>
       </div>
     </div>

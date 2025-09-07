@@ -68,6 +68,7 @@ export const DataProvider = ({ children }) => {
         setLoading(false);
       }
     } catch (error) {
+      navigate("/login")
       console.log(error);
     }
   };

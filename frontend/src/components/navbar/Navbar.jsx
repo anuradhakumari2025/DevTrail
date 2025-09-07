@@ -12,6 +12,8 @@ const Navbar = ({ mobileOpen, setMobileOpen }) => {
   let title = "Dashboard";
   if (location.pathname.includes("journal")) title = "Journal";
   if (location.pathname.includes("settings")) title = "Settings";
+    if (location.pathname.includes("community")) title = "Community";
+
 
   const params = new URLSearchParams();
   if (search) params.append("search", search);
