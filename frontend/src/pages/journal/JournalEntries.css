@@ -1,25 +1,134 @@
-.timelineCard{
+.timelineCard {
   background-color: var(--tertiary) !important;
 }
 
-.timelineSubtitle{
+.timelineSubtitle {
   color: white !important;
   font-size: 1.2rem !important;
   font-weight: 400 !important;
 }
 
-.my-card-title{
+.my-card-title {
   font-size: 1.5rem !important;
 }
-.my-card-text{
-  padding:0.3rem 1rem;
+.my-card-text {
+  padding: 0.3rem 1rem;
   background-color: var(--highlight);
   color: white !important;
   font-size: 1.1rem !important;
   font-weight: 500 !important;
 }
-.my-timeline-title{
-  /* background-color: red; */
+.my-timeline-title {
   font-size: 1.2rem !important;
   color: var(--highlight) !important;
+}
+
+.title {
+  color: rgb(255, 143, 38);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.content {
+  color: var(--bg);
+  font-size: 1.1rem;
+  line-height: 1.4rem;
+  opacity: 0.7;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.visibility,
+.date,
+.category {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.date i,
+.visibility i,
+.category i {
+  color: var(--bg);
+  font-size: 1.4rem;
+}
+
+.date p,
+.visibility p,
+.category p {
+  background-color: var(--tertiary);
+  border: 1px solid var(--highlight);
+  padding: 0.3rem 0.8rem;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.26);
+  color: var(--bg);
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tagsContent {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.tags {
+  background: var(--highlight);
+  color: var(--bg);
+  padding: 0.5rem 1.5rem;
+  border-radius: 18px;
+  font-size: 1rem;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(8.6px);
+  -webkit-backdrop-filter: blur(6.6px);
+}
+
+.entry-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.entry-actions button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .date i,
+  .visibility i,
+  .category i {
+    font-size: 1rem;
+  }
+
+  .date p,
+  .visibility p,
+  .category p {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .entry-actions button {
+    padding: 0.8rem 1.2rem;
+  }
+  .content {
+    font-size: 1rem;
+    line-height: 1.1rem;
+  }
+  .tags {
+    font-size: 0.8rem;
+  }
 }

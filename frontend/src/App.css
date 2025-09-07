@@ -3,34 +3,22 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body,
 html,
 #root {
   width: 100%;
-  /* height: 100%; */
 }
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
 }
-/* :root {
-  --primary-color: #24292f;
-  --secondary-color: #ffffff;
-  --bg-gradient: linear-gradient(135deg, #1f1c2c, #928dab);
-  --card-bg: #ffffff;
-  --text-dark: #333;
-  --border-radius: 12px;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-} */
 
-/* :root {
-  --color-bg: #f9fafb;     /* keep light bg for contrast 
-  --color-primary: #3B0B64; 
-  --color-secondary: #6E0D4D;
-  --color-accent: #FF642C; 
-  --color-danger: #C20608;
-  --color-highlight: #F72916;
-  --color-text: #111827;
-} */
+::selection {
+  color: rgb(235, 223, 228);
+  background: rgb(253, 87, 123);
+}
+
 :root {
   --bg-gradient: linear-gradient(to bottom, #27117d, #0a032d);
   --primary: #0a032d;
@@ -50,9 +38,9 @@ body {
 
 .layout{
   height: 100vh;
-  /* padding:0 1rem ; */
   display: flex;
 }
+
 .layoutChild{
   display: flex;
   flex-direction: column;
@@ -60,12 +48,13 @@ body {
   width: 82%;
   padding: 1rem 1.2rem;
 }
+
 @media (max-width: 600px) {
   .layoutChild{
     width: 100%;
-    /* padding: 1rem 0.5rem; */
   }
 }
+
 @media (min-width: 601px) and (max-width: 1024px) {
   .layoutChild{
     width: 78%;

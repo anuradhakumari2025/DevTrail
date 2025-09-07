@@ -16,7 +16,7 @@
   padding: 30px 32px;
   border-radius: 20px;
   width: 450px;
-  box-shadow: 0 6px 16px rgba(101, 21, 255, 0.6);
+  box-shadow: 0 8px 10px rgba(101, 21, 255, 0.5);
 }
 
 .modal-content h2 {
@@ -69,4 +69,10 @@
 
 .save:hover {
   background-color: #02754b;
+}
+
+@media (max-width:600px){
+  .modal{
+    padding: 0 0.8rem;
+  }
 }

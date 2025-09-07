@@ -2,14 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 1.5rem;
   background: var(--bg);
   border-radius: 30px;
   height: 3.6rem;
   color: #333;
-  /* position: absolute; */
-  /* top: 1.2rem; */
-  /* left: 19%; */
   width: 100%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.26);
 }
@@ -112,6 +109,9 @@
     gap: 1rem;
   }
   .navbar-search{
-    width: 15rem;
+    width: 12rem;
+  }
+  .navbar{
+    padding: 1rem 20px;
   }
 }

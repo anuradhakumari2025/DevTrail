@@ -19,8 +19,8 @@ const JournalHeader = ({ setShowForm, setViewValue }) => {
   const params = new URLSearchParams();
   if (filterCategory && filterCategory !== "All")
     params.append("category", filterCategory);
-  if (filterParentTag) params.append("parentTag", filterParentTag);
-  if (filterChildTag) params.append("childTag", filterChildTag);
+  if (filterParentTag && filterParentTag !== "ALL") params.append("parentTag", filterParentTag);
+  if (filterChildTag && filterChildTag !== "ALL") params.append("childTag", filterChildTag);
 
   const fetchJournals = async () => {
     try {
@@ -80,6 +80,7 @@ const JournalHeader = ({ setShowForm, setViewValue }) => {
               {!tag.parent && tag.category}
             </option>
           ))}
+          <option value="All">All</option>
         </select>
 
         {/* // Child Tag Dropdown (shows only if parent is selected) */}
@@ -96,9 +97,11 @@ const JournalHeader = ({ setShowForm, setViewValue }) => {
                 {child.name}
               </option>
             ))}
+            <option value="All">All</option>
           </select>
         )}
       </div>
+
       <div className="addView">
         <div className="view" onClick={() => setView(!view)}>
           <i className="ri-eye-line"></i>

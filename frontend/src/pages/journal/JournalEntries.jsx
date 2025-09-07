@@ -18,8 +18,8 @@ const JournalEntries = ({ setShowForm, setEditIndex, viewValue }) => {
   const customDarkTheme = {
     // Base colors
     cardBgColor: "#27117d", //✅
-    toolbarBgColor: "#27117d", 
-    toolbarBtnBgColor: "#6638fd", 
+    toolbarBgColor: "#27117d",
+    toolbarBtnBgColor: "#6638fd",
 
     // Enhanced dark mode properties
     iconColor: "white",
@@ -49,48 +49,58 @@ const JournalEntries = ({ setShowForm, setEditIndex, viewValue }) => {
               key={entry._id}
               className={`entry-card category-${entry.category}`}
             >
-              <div className="mainField">
-                <h4 className="tags">Title :</h4>
-                <p className="tagsContent">{entry.title} </p>
-              </div>
-
-              <div className="mainField">
-                <h4 className="tags">Content :</h4>
-                <p className="tagsContent">
-                  {entry.content.length > 100
-                    ? entry.content?.slice(0, 100) + "..."
-                    : entry.content}
-                </p>
-              </div>
-
-              <div className="catVis">
-                <div>
-                  <h4 className="tags">Category :</h4>
-                  <p className="tagsContent"> {entry?.category}</p>
-                </div>
-
-                <div>
-                  <h4 className="tags">Visibility :</h4>
-                  <p className="tagsContent">
+              <div className="top">
+                <div className="visibility">
+                  {entry.visibility == "public" && (
+                    <i
+                      className="ri-eye-line"
+                      title="Who can see your entry"
+                    ></i>
+                  )}
+                  {entry.visibility == "private" && (
+                    <i className="ri-eye-off-line"></i>
+                  )}
+                  <p>
                     {entry.visibility?.charAt(0).toUpperCase() +
                       entry.visibility?.slice(1)}
                   </p>
                 </div>
-
-                <div>
-                  <h4 className="tags">Date :</h4>
-                  <p className="tagsContent">{entry.date?.slice(0, 10)}</p>
+                <div className="date" title="Date of entry when added">
+                  <i className="ri-calendar-2-line"></i>
+                  <p>{entry.date?.slice(0, 10)}</p>
                 </div>
               </div>
 
-              <div className="mainField">
-                <h4 className="tags">Tags :</h4>
-                <p className="tagsContent">
+              <h2 className="title">{entry.title} </h2>
+
+              <p className="content">
+                {entry.content.length > 100
+                  ? entry.content?.slice(0, 100) + "..."
+                  : entry.content}
+              </p>
+
+              <div className="category">
+                <i className="ri-folder-2-line" title="Category of entry"></i>
+                <p> {entry?.category}</p>
+              </div>
+
+              <div className="tagsContent">
+                <p className="tags">
                   {entry.tags?.map((tag) => {
                     // console.log(tag, "tag i love you", tag._id);
                     return (
                       <span key={tag._id} className="tag">
-                        {tag.parent && `${tag?.category} - ${tag.name}`}
+                        {tag.parent && tag?.category}
+                      </span>
+                    );
+                  })}
+                </p>
+
+                <p className="tags">
+                  {entry.tags?.map((tag) => {
+                    return (
+                      <span key={tag._id} className="tag">
+                        {tag.parent && tag.name}
                       </span>
                     );
                   })}
@@ -99,13 +109,13 @@ const JournalEntries = ({ setShowForm, setEditIndex, viewValue }) => {
 
               <div className="entry-actions">
                 <button className="save" onClick={() => handleEdit(entry._id)}>
-                  Edit
+                  <i className="ri-pencil-line"></i> &nbsp;Edit
                 </button>
                 <button
                   className="cancel"
                   onClick={() => handleDelete(entry._id)}
                 >
-                  Delete
+                  <i className="ri-delete-bin-6-line"></i> &nbsp;Delete
                 </button>
               </div>
             </div>
@@ -137,7 +147,7 @@ const JournalEntries = ({ setShowForm, setEditIndex, viewValue }) => {
                 cardDetailedText: tagsText.filter(Boolean), // Array of Tags
               };
             })}
-            mode="VERTICAL_ALTERNATING" 
+            mode="VERTICAL_ALTERNATING"
             hideControls={false}
             cardHeight={100}
             theme={customDarkTheme}
@@ -146,7 +156,7 @@ const JournalEntries = ({ setShowForm, setEditIndex, viewValue }) => {
               cardSubTitle: "timelineSubtitle",
               cardText: "my-card-text",
               cardTitle: "my-card-title",
-              title: "my-timeline-title", 
+              title: "my-timeline-title",
             }}
           />
         )}
