@@ -1,5 +1,6 @@
-.dashboard {
-  box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.26);
+
+.settings{
+    box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.26);
   background: var(--bg);
   width: 100%;
   border-radius: 1.5rem;
@@ -9,23 +10,12 @@
 
 .charts {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
   padding: 1rem 1rem;
   overflow-y: scroll;
   height: 100%;
 }
-
-.charts::-webkit-scrollbar {
-  width: 6px;
-}
-
-.charts::-webkit-scrollbar-thumb {
-  background: rgb(151, 166, 218);
-  border-radius: 25px;
-}
-
-.chart-card,
 .badge-card {
   border: 1px solid var(--tertiary);
   display: flex;
@@ -34,52 +24,14 @@
   border-radius: 10px;
   background-color: rgb(227, 243, 243);
   height: 22rem;
-  /* height: auto; */
-}
-.chart-card:hover{
-  transition: all 0.3s ease;
-  scale: 1.01;
 }
 
-.timeChart {
-  grid-column: 1 / -1;
-}
-
-.chart-card h3,
 .badge-card h3 {
   background-color: var(--tertiary);
   padding: 1rem 1rem;
   color: var(--bg);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-}
-
-.responsiveContainer {
-  width: 100%;
-  /* height: 15rem !important; */
-}
-
-/*Ipad Responsive */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .charts {
-    height: auto;
-  }
-  .dashboard {
-    height: calc(100vh - 7rem);
-  }
-}
-
-/* Mobile Responsive */
-@media (max-width: 600px) {
-  .sidebar {
-    display: none;
-  }
-  .nav-actions .btn {
-    display: none;
-  }
-  .charts {
-    grid-template-columns: repeat(1, 1fr);
-  }
 }
 
 .badge-card {
@@ -90,7 +42,7 @@
   height: 18rem;
   object-fit: cover;
 }
-.badge:hover{
+.badge:hover {
   scale: 1.05;
   transition: all 0.3s ease;
 }

@@ -23,6 +23,7 @@ export const DataProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const backendUrl = "http://localhost:5000/api";
 
+// Fetch journals function
   const fetchJournals = async () => {
     try {
       const res = await axios.get(`${backendUrl}/journals/get`);
@@ -33,6 +34,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  //Fetch tags function
   const fetchTags = async () => {
     try {
       const res = await axios.get(`${backendUrl}/tags/get`);
@@ -43,6 +45,7 @@ export const DataProvider = ({ children }) => {
     }
   }
 
+  //data to be exported as value
   const data = {
     backendUrl,
     navigate,
@@ -58,12 +61,14 @@ export const DataProvider = ({ children }) => {
     setTags,
   };
 
+  // Fetch user profile data function
   const fetchUser = async () => {
     try {
       const res = await axios.get(`${backendUrl}/auth/me`, {
         withCredentials: true,
       });
       if (res.statusText == "OK") {
+        console.log(res.data)
         setUser(res.data);
         setLoading(false);
       }

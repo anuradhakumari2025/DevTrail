@@ -5,6 +5,7 @@ import Navbar from "./navbar/Navbar";
 import Journal from "../pages/journal/Journal";
 import { useState } from "react";
 import Community from "../pages/community/Community";
+import Settings from "../pages/settings/Settings";
 
 const Layout = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -18,6 +19,7 @@ const Layout = () => {
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/journal" element={<Journal />} />
+          <Route path="/settings" element={<Settings/>}/>
           <Route path="/community" element={<Community/>}/>
         </Routes>
       </div>

@@ -2,25 +2,19 @@ import axios from "axios";
 import { useData } from "../../context/DataContext";
 import { categories } from "./JournalData";
 import { useEffect, useState } from "react";
-import "./JournalForm.css"
+import "./JournalForm.css";
 
 const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
-  const {
-    entries,
-    setEntries,
-    formData,
-    setFormData,
-    backendUrl,
-    tags
-  } = useData();
+  const { entries, setEntries, formData, setFormData, backendUrl, tags } =
+    useData();
 
-   const [selectedParentTag, setSelectedParentTag] = useState("");
-    const [selectedChildTag, setSelectedChildTag] = useState("");
+  const [selectedParentTag, setSelectedParentTag] = useState("");
+  const [selectedChildTag, setSelectedChildTag] = useState("");
 
-     const parentTags = tags.filter((tag) => tag.parent === null);
-     const childTags = tags.filter(
-       (tag) => tag.parent && tag.parent._id === selectedParentTag
-     );
+  const parentTags = tags.filter((tag) => tag.parent === null);
+  const childTags = tags.filter(
+    (tag) => tag.parent && tag.parent._id === selectedParentTag
+  );
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -35,9 +29,17 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
     if (selectedParentTag) tagsToSend.push(selectedParentTag);
     if (selectedChildTag) tagsToSend.push(selectedChildTag);
     // console.log("Selected Tags:", tagsToSend);
+
+
+      const now = new Date();
+  const entryDate = new Date(formData.date);
+  // Inject current hours/minutes into selected date
+  entryDate.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
+
     // Update formData before send
     const dataToSubmit = {
       ...formData,
+        date: entryDate.toISOString(),
       tags: tagsToSend,
     };
     // console.log("Form Data Submitted:", dataToSubmit);
@@ -119,7 +121,7 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
     setSelectedChildTag,
     setSelectedParentTag,
   ]);
-  
+
   return (
     <div className="modal">
       <div className="modal-content">
@@ -138,7 +140,7 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
           <input
             type="date"
             name="date"
-            max={new Date().toISOString().split("T")[0]}
+            max={new Date().toISOString().slice(0, 16)} // upto yyyy-mm-ddThh:mm
             value={formData.date}
             onChange={handleChange}
             required
@@ -204,16 +206,14 @@ const JournalForm = ({ editIndex, setEditIndex, setShowForm }) => {
                   Select child tag
                 </option>
 
-                {childTags.map((child) => 
-                {
+                {childTags.map((child) => {
                   // console.log(child, "child i love you",child._id);
-                  return(
-                     <option key={child._id} value={child._id}>
-                    {child.name}
-                  </option>
-                  )
-                }
-                )}
+                  return (
+                    <option key={child._id} value={child._id}>
+                      {child.name}
+                    </option>
+                  );
+                })}
               </select>
             </>
           )}

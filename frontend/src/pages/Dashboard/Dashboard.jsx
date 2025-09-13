@@ -51,7 +51,15 @@ const Dashboard = () => {
     }, {})
   );
 
-  const colors = ["#0088FE", "#00C49F","#9C089C", "#FFBB28", "#FF8042","#EB1EA5","#227FC3"];
+  const colors = [
+    "#0088FE",
+    "#00C49F",
+    "#9C089C",
+    "#FFBB28",
+    "#FF8042",
+    "#EB1EA5",
+    "#227FC3",
+  ];
 
   return (
     <div className="dashboard">
@@ -127,6 +135,7 @@ const Dashboard = () => {
             </LineChart>
           </ResponsiveContainer>
         </div>
+
       </div>
     </div>
   );
